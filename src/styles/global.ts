@@ -8,7 +8,7 @@ export default createGlobalStyle`
   list-style: none;
 } 
 body {
-  background: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
   font-family: "Poppins", sans-serif;
 }
 
