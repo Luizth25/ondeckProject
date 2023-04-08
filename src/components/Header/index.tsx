@@ -1,4 +1,4 @@
-import Logo from "assets/Logo.svg";
+import Logo from "../../assets/Logo.svg";
 
 import { THeaderProps } from "./types";
 import * as s from "./styles";
