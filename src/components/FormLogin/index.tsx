@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { login } from "../../utils/login";
 
 import ButtonLogin from "../Button/ButtonLogin";
@@ -17,12 +19,15 @@ const FormLogin = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+
   const userLogin = () => {
     setErrorMessage("");
     setLoading(true);
     login({ email: userEmail, password: userPassword })
       .then(() => {
         alert("login realizado com sucesso!!");
+        navigate("/home");
       })
       .catch((error) => {
         setErrorMessage(`${error}`);
@@ -62,6 +67,7 @@ const FormLogin = () => {
         {errorMessage ? <s.ErrorMessage>{errorMessage}</s.ErrorMessage> : null}
         <s.ContainerCheckboxInput>
           <Checkbox label="Lembre-me" type="checkbox" />
+          <Link label="Esqueci minha senha" href="/" />
         </s.ContainerCheckboxInput>
         <s.ButtonContainer>
           {loading ? (
@@ -69,7 +75,9 @@ const FormLogin = () => {
           ) : (
             <ButtonLogin label="ENTRAR" disabled={loading} />
           )}
-          <s.Paragraph>Não tem uma conta? Registe-se</s.Paragraph>
+          <s.Paragraph>
+            Não tem uma conta? <Link label="Registre-se" href="/register" />
+          </s.Paragraph>
         </s.ButtonContainer>
       </s.MainContainer>
     </s.FormContainer>

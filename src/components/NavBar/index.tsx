@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import FiberIcon from "assets/Fiber_Icon.svg";
-import GradieIcon from "assets/Gradie_Icon.svg";
+import FiberIcon from "../../assets/Fiber_Icon.svg";
+import GradieIcon from "../../assets/Gradie_Icon.svg";
 
 import ButtonLogin from "../Button/ButtonLogin";
 import ButtonRegistrar from "../Button/ButtonRegister";
-import Tooltip from "components/Tooltip";
+import Tooltip from "../Tooltip";
 
 import * as s from "./styles";
 const NavBar = () => {
