@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const MainContainer = styled.main`
   display: flex;
@@ -7,10 +7,17 @@ export const MainContainer = styled.main`
   margin-top: 20px;
 `;
 
+const FadeInAnimation = keyframes`
+from{ opacity: 0;}
+
+to {opacity: 1;}
+`;
+
 export const imageContainer = styled.div`
   display: flex;
   height: 60vh;
   align-self: center;
+  animation: ${FadeInAnimation} 2s linear normal;
 `;
 
 export const Title = styled.h1`
