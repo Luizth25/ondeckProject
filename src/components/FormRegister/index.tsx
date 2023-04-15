@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -20,6 +22,7 @@ const required = "Esse campo é obrigatório";
 const FormRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
 
   const navigate = useNavigate();
 
@@ -46,6 +49,16 @@ const FormRegister = () => {
     resolver: yupResolver(schema),
   });
 
+  const errorToast = (message: string) =>
+    toast.error(message, {
+      theme: "colored",
+    });
+
+  const successToast = (message: string) =>
+    toast.success(message, {
+      theme: "colored",
+    });
+
   const handleClickRegister = (values: FormData) => {
     setIsLoading(true);
     axios
@@ -54,10 +67,11 @@ const FormRegister = () => {
         password: values.password,
       })
       .then((response) => {
-        alert(response.data.msg);
-        navigate("/login");
+        successToast(response.data.msg);
+        setIsRegister(true);
       })
       .catch((e) => {
+        errorToast(e.response.data.msg);
         console.error(e);
       })
       .finally(() => {
@@ -123,7 +137,14 @@ const FormRegister = () => {
 
         <s.ButtonContainer>
           {isLoading ? <LoadingButton /> : <ButtonLogin label="Enviar" />}
+          {isRegister ? (
+            <ButtonLogin
+              label="ir para login"
+              onClick={() => navigate("/login")}
+            />
+          ) : null}
         </s.ButtonContainer>
+        <ToastContainer transition={Flip} />
       </s.FormContainer>
     </>
   );

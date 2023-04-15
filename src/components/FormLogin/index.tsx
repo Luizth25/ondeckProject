@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
 import axios from "axios";
 
 import ButtonLogin from "../Button/ButtonLogin";
@@ -41,6 +45,11 @@ const FormLogin = () => {
     resolver: yupResolver(schema),
   });
 
+  const errorToast = (message: string) =>
+    toast.error(message, {
+      theme: "colored",
+    });
+
   const handleClickLogin = (value: FormData) => {
     setLoading(true);
     axios
@@ -53,6 +62,7 @@ const FormLogin = () => {
         navigate("/home");
       })
       .catch((e) => {
+        errorToast(e.response.data.msgError);
         console.error(e);
       })
       .finally(() => {
@@ -121,6 +131,7 @@ const FormLogin = () => {
           </s.Paragraph>
         </s.ButtonContainer>
       </s.MainContainer>
+      <ToastContainer transition={Flip} />
     </s.FormContainer>
   );
 };
