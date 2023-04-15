@@ -1,5 +1,6 @@
-import { CiRedo } from "react-icons/ci";
 import styled, { css, keyframes } from "styled-components";
+
+import { CiRedo } from "react-icons/ci";
 
 export const LoadingContainer = styled.button`
   ${({ theme }) => css`

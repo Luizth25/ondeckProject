@@ -1,4 +1,4 @@
-export type TLoginProps = {
+export type TUserLoginInfo = {
   email: string;
   password: string;
 };
