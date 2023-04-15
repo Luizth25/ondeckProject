@@ -75,7 +75,7 @@ const NavBar = () => {
         </s.List>
       </nav>
       <s.ButtonContainer>
-        <ButtonLogin onClick={() => navigate("/")} label="Logar" />
+        <ButtonLogin onClick={() => navigate("/login")} label="Logar" />
         <ButtonRegistrar label="Registre-se" />
       </s.ButtonContainer>
     </>

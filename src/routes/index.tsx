@@ -6,10 +6,10 @@ import Register from "../pages/Register";
 
 const Routes = () => (
   <RouteRRD>
-    <Route index element={<Login />} />
+    <Route index path="/login" element={<Login />} />
     <Route path="/home" element={<Home />} />
     <Route path="/register" element={<Register />} />
-    <Route path="*" element={<Navigate to="/" />} />
+    <Route path="*" element={<Navigate to="/login" />} />
   </RouteRRD>
 );
 export default Routes;
